@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{parcolumns}
+\usepackage{verbdef}
+\usepackage{courier}
+\usepackage{indentfirst}
+\usepackage{framed}
+
+
+\begin{document}
+	
+\renewcommand{\contentsname}{Contents}
+
+\section{Description}
+
+\tt Title: Квадратная прецессия \\
+
+\tt Category: Crypto \\
+
+\tt Value: 100
+
+\begin{framed}
+	Даны три шифротекста (ciphertext1.txt, ciphertext2.txt, ciphertext3.txt) и два открытых текста (plaintext1, plaintext2), зашифрованные одним и тем же шифром. Требуется расшифровать третий текст и найти в нем флаг.
+\end{framed}
+
+\section{Legend}
+
+\begin{framed}
+	Наши разведчики перехватили важную переписку с серверов противника. К сожалению, перехватить в открытом виде удалось только незначительные сообщения. Ваша цель - расшифровать все.
+\end{framed}
+
+\section{Flag}
+
+\tt Flag regex: 
+\framebox[.7\textwidth\hfill]{simple text} \\
+
+\tt Flag: 
+\framebox[.7\textwidth\hfill]{gravitationfollowsspacecreatures}
+
+\section{Solution}
+
+Заметим, что частотность символов не изменяется - это шифр перестановки. Длина сообщений является точным квадратом, намекает на квадратную таблицу. Запишем шифротекст в таблицу по строкам и увидим, что открытый текст вырисовывается зигзагом. Восстанавливаем исходный текст.
+Более подробно можно посмотреть в файле task.py и функции test().
+
+\section{Hints}
+
+\begin{enumerate}
+\item Заметьте, что частотность символов не изменяется.
+\item Измерьте длину сообщений.
+\item Это перестановка внутри квадратной таблицы.
+\item Зигзаг же с левого верхнего угла!
+\end{enumerate}
+
+\section{Discussion}
+
+Возможно усложнить задачу путем внесения дополнительных перемешиваний. Можно упростить задачу путем уменьшения третьего текста, чтобы им не писать программу, а делать задание вручную.
+
+\section{Setup}
+
+Выдать командам архив с файлами ciphertexts/*.txt и plaintexts/\{1.txt, 2.txt\}.
+
+\end{document}
