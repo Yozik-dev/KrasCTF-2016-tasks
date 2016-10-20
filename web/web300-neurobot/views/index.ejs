@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="javascripts/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1><%- title %></h1>
+    <p>Welcome, <%- session.login %></p>
+    <p>Your api token: <b><%- session.api_token %></b></p>
+    <form id="message-form" action="/message" method="POST">
+        <input type="text" name="message" id="message-input">
+        <input type="submit">
+    </form>
+    <div class="messages">
+    </div>
+    <script src="javascripts/base.js"></script>
+  </body>
+</html>
