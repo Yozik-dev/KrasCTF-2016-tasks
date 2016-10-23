@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{parcolumns}
+\usepackage{verbdef}
+\usepackage{courier}
+\usepackage{indentfirst}
+\usepackage{framed}
+
+
+\begin{document}
+	
+	\renewcommand{\contentsname}{Contents}
+	
+	\section{Description}
+	
+	\tt Title: Cats in space \\
+	
+	\tt Category: Crypto \\
+	
+	\tt Value: 200
+	
+	\begin{framed}
+		Даны файлы letter.pdf и letter.txt, содержащие в себе кучу картинок котиков и планеток. Требуется извлечь текст.
+	\end{framed}
+	
+	\section{Legend}
+	
+	Вы хорошо поработали над предыдущим заданием. Однако, расшифрованы не все письма! Парочка завалялось в мусорном контейнере. Мы не смогли их расшифровать т.к. залипли на содержание. Удачи.
+	
+	\section{Flag}
+	
+	\tt Flag regex: 
+	\framebox[.7\textwidth\hfill]{simple text} \\
+	
+	\tt Flag: 
+	\framebox[.7\textwidth\hfill]{флагкосмосфлаг}
+	
+	\section{Solution}
+	
+	Первый шифротекст зашифрован шифром Цезаря со сдвигом на 16. Теперь посмотрим на второй. Если посчитать - видов котиков чуть больше 33, что намекает на шифр замены. Планеты стоят чаще, а значит кодируют пробелы и прочие спец. символы. Извлечь картинки из PDF можно как вручную, так и простым скриптом на питоне (там довольно простая структура, если открыть в блокноте). Далее воспользуемся либо спец. софтом на базе частотного анализа, либо намеком в первом шифротексте на то, что текст начинается с фразы "письмо от ...".
+	
+	\section{Hints}
+	
+	\begin{enumerate}
+		\item Spaces are spaces.
+		\item Подумайте внимательно какая у письма может быть структура на основании того, что вы знаете о письмах.
+		\item Котики кодируют буквы, а планетки - пробелы, табы, переносы строк и т.д.
+		\item Сообщение начинается с фразы "письмо от".
+	\end{enumerate}
+	
+	\section{Discussion}
+	
+	Можно упростить задачу, изъяв из нее спецсимволы и добавив в текст наличие цифр так, чтобы получилось ровно 43 элемента алфавита. Планетами кодировать только пробелы и переносы строк.
+	Усложнять задачу вряд-ли потребуется.
+	
+	\section{Setup}
+	
+	Выдать командам файлы letter2.pdf и letter1.txt
+	
+\end{document}
