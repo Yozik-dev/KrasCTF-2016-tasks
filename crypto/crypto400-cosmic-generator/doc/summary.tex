@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{parcolumns}
+\usepackage{verbdef}
+\usepackage{courier}
+\usepackage{indentfirst}
+\usepackage{framed}
+
+
+\begin{document}
+	
+	\renewcommand{\contentsname}{Contents}
+	
+	\section{Description}
+	
+	\tt Title: Cosmic generator \\
+	
+	\tt Category: Crypto \\
+	
+	\tt Value: 400
+	
+	\begin{framed}
+		Дан файл spacesecrets.jpg, содержащий зашифрованную информацию. Также, дан файл encode.py, осуществляющий шифрование и spacenoize.pcap с дампом трафика.
+	\end{framed}
+	
+	\section{Legend}
+	
+	Космос пронизывают бесчисленные множества радиоволн, некоторые из которых являются просто случайным шумом, а некоторые специально сгенерированным.
+	
+	\section{Flag}
+	
+	\tt Flag regex: 
+	\framebox[.7\textwidth\hfill]{simple text} \\
+	
+	\tt Flag: 
+	\framebox[.7\textwidth\hfill]{дажешумсодержитсмысл}
+	
+	\section{Solution}
+	
+	В питоновском скрипте реализован стандартный алгоритм шифрования при помощи XOR с псевдослучайной последовательностью, сгенерированной линейным сдвиговым регистром с обратной связью. В дампе трафика можно найти ICMP пакеты и собрать из их содержимого последовательность (коды 30 и 31 - это ASCII коды нуля и единицы). Далее следует догадаться, что поксорив ее с зашифрованной картинкой - получается валидная сигнатура. Однако, последовательность только 120 байт, а нужно для картинки гораздо больше. Применяем алгоритм Берлекемпа-Месси и получаем результат. Подробнее в файле solver.py. Возможны и иные варианты ввиду того, что seed и polynom имеют небольшые значения.
+	
+	\section{Hints}
+	
+	\begin{enumerate}
+		\item Космический шум, всем известно, передается пингами по 10 значений в каждом.
+		\item Это довольно известный алгоритм генерации гаммы.
+		\item иссэМ — апмэкелреБ мтироглА.
+		\item Алгоритм Берлекэмпа — Мэсси.
+		\item Если совсем не идет - seed 3 бита, polynom 12 бит.
+	\end{enumerate}
+	
+	\section{Discussion}
+	
+	Тут и проще и сложнее некуда. Разве что можно PCAP похитрее закодировать.
+	
+	\section{Setup}
+	
+	Выдать командам файлы censored.jpg, encoding\_script.py, spacenoize.pcap.
+	
+\end{document}

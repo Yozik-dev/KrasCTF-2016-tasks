@@ -1,0 +1,66 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{fancyvrb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{parcolumns}
+\usepackage{verbdef}
+\usepackage{courier}
+\usepackage{indentfirst}
+\usepackage{framed}
+
+
+\begin{document}
+	
+\renewcommand{\contentsname}{Contents}
+
+\section{Description}
+
+\tt Title: RSA на бумаге \\
+
+\tt Category: Crypto \\
+
+\tt Value: 300
+
+\begin{framed}
+	Дан файл, зашифрованный с помощью RSA и публичный ключ, с помощью которого производилось шифрование. В комплекте идет фотография, распечатанного на бумаге приватного RSA ключа, который частично поврежден.
+\end{framed}
+
+\section{Legend}
+
+\begin{framed}
+	Инопланетный разум использует исключительно RSA для шифрования своей переписки. Нашему агенту удалось сфотографировать ключ через иллюминатор космического корабля.
+\end{framed}
+
+\section{Flag}
+
+\tt Flag regex: 
+\framebox[.7\textwidth\hfill]{simple text} \\
+
+\tt Flag: 
+\framebox[.7\textwidth\hfill]{whyplutoisnotaplanetanymore}
+
+\section{Solution}
+
+Применяем стандартную атаку ферма на RSA. Придется постараться, чтобы распознать все символы ключа автоматически т.к. изображение достаточно большое. По ключу видно, что в нем много нулей, и его p и q вероятно очень близко друг к другу расположены. Поврежденный на картинке символ придется перебрать.
+Для перевода из PEM формата ключа можно воспользоваться библиотекой pycrypto или openssl.
+
+\section{Hints}
+
+\begin{enumerate}
+\item Присмотритесь к ключу, почему он такой неслучайный.
+\item PEM формат, если что.
+\item Атака как по википедии.
+\end{enumerate}
+
+\section{Discussion}
+
+Никаких особых дополнений.
+
+\section{Setup}
+
+Выдать командам архив с файлами encrypted.enc, photo.jpg.
+
+\end{document}
